@@ -10,14 +10,10 @@ Please read the [CONTRIBUTION](CONTRIBUTION.md) file for more information on how
 
 ### Running tests
 
-Running unit tests:
+Running all tests:
+
+    composer tests
+
+To run only the unit-tests:
 
     ./vendor/bin/phpunit
-
-Running code sniffer:
-
-    ./vendor/bin/phpcs src/
-    
-Running static analyzer:
-
-    ./vendor/bin/phpstan analyze -l 7 -c phpstan.neon src/    
