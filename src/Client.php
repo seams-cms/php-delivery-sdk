@@ -6,6 +6,7 @@ namespace SeamsCMS\Delivery;
 
 use GuzzleHttp\Exception\BadResponseException as GuzzleBadResponseException;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Uri;
 use SeamsCMS\Delivery\Exception\BadResponseException;
 use SeamsCMS\Delivery\Exception\BaseException;
 use SeamsCMS\Delivery\Exception\RateLimitException;
@@ -65,9 +66,9 @@ class Client
      */
     public function getWorkspaceCollection(): WorkspaceCollection
     {
-        $json = $this->makeApiRequest('get', sprintf('/workspace/%s', $this->workspace));
+        $body = $this->makeApiRequest('get', sprintf('/workspace/%s', $this->workspace));
 
-        return new WorkspaceCollection($json);
+        return new WorkspaceCollection($body);
     }
 
 
@@ -76,9 +77,9 @@ class Client
      */
     public function getAssetCollection(): AssetCollection
     {
-        $json = $this->makeApiRequest('get', sprintf('/workspace/%s/assets', $this->workspace));
+        $body = $this->makeApiRequest('get', sprintf('/workspace/%s/assets', $this->workspace));
 
-        return new AssetCollection($json);
+        return new AssetCollection($body);
     }
 
     /**
@@ -86,9 +87,9 @@ class Client
      */
     public function getContentTypeCollection(): ContentTypeCollection
     {
-        $json = $this->makeApiRequest('get', sprintf('/workspace/%s/types', $this->workspace));
+        $body = $this->makeApiRequest('get', sprintf('/workspace/%s/types', $this->workspace));
 
-        return new ContentTypeCollection($json);
+        return new ContentTypeCollection($body);
     }
 
     /**
@@ -97,17 +98,32 @@ class Client
      */
     public function getContentType(string $type): ContentType
     {
-        $json = $this->makeApiRequest('get', sprintf('/workspace/%s/type/%s', $this->workspace, $type));
+        $body = $this->makeApiRequest('get', sprintf('/workspace/%s/type/%s', $this->workspace, $type));
 
-        return new ContentType($json);
+        return new ContentType($body);
+    }
+
+    /**
+     * @param string $id
+     * @return array
+     */
+    public function getEntry(string $id, bool $resolve = false): array
+    {
+        $uri = new Uri(sprintf('/workspace/%s/entry/%s', $this->workspace, $id));
+        if ($resolve) {
+            $uri = Uri::withQueryValue($uri, 'resolve', '1');
+        }
+        $body = $this->makeApiRequest('get', $uri);
+
+        return json_decode($body, true);
     }
 
     /**
      * @param string $method
-     * @param string $url
+     * @param string|Uri $url
      * @return string
      */
-    private function makeApiRequest(string $method, string $url): string
+    private function makeApiRequest(string $method, $url): string
     {
         try {
             $response = $this->client->request($method, $url);
