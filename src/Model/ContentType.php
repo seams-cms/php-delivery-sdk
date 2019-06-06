@@ -4,37 +4,59 @@ declare(strict_types=1);
 
 namespace SeamsCMS\Delivery\Model;
 
-class ContentType extends Model
+class ContentType
 {
-    public static $model = [
-        'id' => [
-            'type' => Model::TYPE_STRING,
-         ],
-        'name' => [
-            'type' => Model::TYPE_STRING,
-        ],
-        'description' => [
-            'type' => Model::TYPE_STRING,
-        ],
-        'fields' => [
-            'type' => Model::TYPE_COLLECTION,
-            'model' => [
-                'name' => [
-                    'type' => Model::TYPE_STRING,
-                 ],
-                'description' => [
-                    'type' => Model::TYPE_STRING,
-                ],
-                'type' => [
-                    'type' => Model::TYPE_STRING,
-                ],
-                'is_localized' => [
-                    'type' => Model::TYPE_BOOLEAN,
-                ],
-                'is_required' => [
-                    'type' => Model::TYPE_BOOLEAN,
-                ],
-            ],
-        ],
-    ];
+    use HydratorTrait {
+        fromArray as private fromArrayTrait;
+    }
+
+    /** @var string */
+    private $id;
+    /** @var string */
+    private $name;
+    /** @var string */
+    private $description;
+    /** @var ContentTypeField[] */
+    private $fields;
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return ContentTypeField[]
+     */
+    public function getFields(): array
+    {
+        return $this->fields;
+    }
+
+    public static function fromArray(array $data)
+    {
+        $data['fields'] = array_map(function ($item) {
+            return ContentTypeField::fromArray($item);
+        }, $data['fields']);
+
+        return self::fromArrayTrait($data);
+    }
 }

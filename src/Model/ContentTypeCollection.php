@@ -4,39 +4,28 @@ declare(strict_types=1);
 
 namespace SeamsCMS\Delivery\Model;
 
-class ContentTypeCollection extends Model
+class ContentTypeCollection extends Collection
 {
-    public static $model = [
-        'meta' => [
-            'type' => Model::TYPE_ARRAY,
-            'model' => [
-                'offset' => [
-                    'type' => Model::TYPE_INTEGER,
-                ],
-                'limit' => [
-                    'type' => Model::TYPE_INTEGER,
-                ],
-                'total' => [
-                    'type' => Model::TYPE_INTEGER,
-                ],
-            ],
-         ],
-        'entries' => [
-            'type' => Model::TYPE_COLLECTION,
-            'model' => [
-                'id' => [
-                    'type' => Model::TYPE_STRING,
-                 ],
-                'name' => [
-                    'type' => Model::TYPE_STRING,
-                ],
-                'description' => [
-                    'type' => Model::TYPE_STRING,
-                ],
-                'entry_count' => [
-                    'type' => Model::TYPE_INTEGER,
-                ],
-            ],
-         ],
-    ];
+    /** @var ContentTypeCollectionEntry[] */
+    protected $entries;
+
+    /**
+     * @return ContentTypeCollectionEntry[]
+     */
+    public function getEntries(): array
+    {
+        return $this->entries;
+    }
+
+    public static function fromArray(array $data)
+    {
+        $data['entries'] = array_map(
+            function ($item) {
+                return ContentTypeCollectionEntry::fromArray($item);
+            },
+            $data['entries']
+        );
+
+        return parent::fromArray($data);
+    }
 }
