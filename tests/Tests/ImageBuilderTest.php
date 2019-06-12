@@ -10,7 +10,7 @@ class ImageBuilderTest extends TestCase
 {
     public function testSimpleImage()
     {
-        $asset = new Asset("workspace", "image.jpg");
+        $asset = Asset::fromArray(['asset' => ['workspace' => 'workspace', 'path' => 'image.jpg'], 'meta' => []]);
 
         $src = ImageBuilder::fromAsset($asset)->getSourceUrl();
         $this->assertEquals('https://assets.seams-cms.com/workspace/image.jpg', $src);
@@ -18,7 +18,7 @@ class ImageBuilderTest extends TestCase
 
     public function testComplexImage()
     {
-        $asset = new Asset("workspace", "image.jpg");
+        $asset = Asset::fromArray(['asset' => ['workspace' => 'workspace', 'path' => 'image.jpg'], 'meta' => []]);
 
         $src = ImageBuilder::fromAsset($asset)
             ->skipCdn()
