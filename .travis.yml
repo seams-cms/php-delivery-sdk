@@ -35,3 +35,7 @@ script:
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+notifications:
+  slack:
+    secure: wc412f+nCV3vVM60SQ71iXT4smXLI5+GJaeH5TxTntZSMIaVzLAWg3fiXE2Q+DXgqen5Em5diAZkUGs1IUaUbrI1ORhq3FgAPiKGhJlXZTrX1vmwDusxxrmM3/hBSrDPjB3/fXUltRdzHuE+kA6c3PZCG8Q7sL1J0P7/oEDC9NEACjpwogjgKKMHYIuJgrkyRZFz1oqjmoOdNIaq2niiG0FaLa1wunCgpG+HSia0GZ+FTcmyFkaPOnYptK5jz4Nwa5uAwidVxOkPDpzRHYN3t2wKyd+bYYpVSUrgwhOrIUNcrJrbDG81c3wodJuUs10dbvem1oVgMr3JaEkKrfW/BXbli6DMLk/FkluUcf7hIVoz87CX4gHXnvAq0RdtfK/6+DAYXn/MLLa7euSp4J3b4or2XxNm9tfkFTB29AsHtv6A7dotYH7w3pieR3bNA6AzfsWGf3Y7bk/j+X3YA+qlrG++TjDVguC1Ckd1kW2i/oPIPbD+XxM1o0z6iCeG01iArsBUL43qJqD481aXwV/C34YHcjJBKhkXuGtKu4quBXyFpdkJnd0Yw2GscEJseaw4jJLK0DS3bgyo1J+nGpojykenEJ66vpfqArNqeCGkGNN8nh6g0pH1eYtEv50nPvC/h9iPcno5gEB4A0b4+NhfqcAL8/EzhvfqPMLK6ESHsdI=
