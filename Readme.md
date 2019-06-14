@@ -1,5 +1,7 @@
 ### Seams-CMS delivery SDK for PHP
 
+[![Build Status](https://travis-ci.org/seams-cms/php-delivery-sdk.svg?branch=master)](https://travis-ci.org/seams-cms/php-delivery-sdk)
+
 This repository hosts the SDK for the Seams-CMS delivery API.
 
 
