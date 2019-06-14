@@ -23,6 +23,7 @@ matrix:
 before_script:
     - composer self-update
     - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
+    - composer info
 
 script:
   - php ./vendor/bin/phpcs -p
