@@ -10,8 +10,6 @@ class Content
         fromArray as fromArrayTrait;
     }
 
-    /** @var ContentMeta */
-    private $meta;
     /** @var array */
     private $content;
 
@@ -62,6 +60,10 @@ class Content
         return !empty($this->content[$field]['locales']);
     }
 
+    /**
+     * @param array $data
+     * @return Content
+     */
     public static function fromArray(array $data)
     {
         $data['meta'] = ContentMeta::fromArray($data['meta']);

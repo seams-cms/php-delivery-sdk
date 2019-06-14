@@ -15,7 +15,7 @@ class CollectionMeta
     private $total;
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getLimit(): int
     {
@@ -23,7 +23,7 @@ class CollectionMeta
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getOffset(): int
     {
@@ -31,7 +31,7 @@ class CollectionMeta
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getTotal(): int
     {

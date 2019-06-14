@@ -36,5 +36,4 @@ class ClientFactory
             'guzzle_options' => [],
         ]);
     }
-
 }

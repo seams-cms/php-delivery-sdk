@@ -14,9 +14,9 @@ class ContentTypeField
     /** @var string */
     private $type;
     /** @var bool */
-    private $is_localized;
+    private $isLocalized;
     /** @var bool */
-    private $is_required;
+    private $isRequired;
 
     /**
      * @return string
@@ -47,7 +47,7 @@ class ContentTypeField
      */
     public function isLocalized(): bool
     {
-        return $this->is_localized;
+        return $this->isLocalized;
     }
 
     /**
@@ -55,6 +55,6 @@ class ContentTypeField
      */
     public function isRequired(): bool
     {
-        return $this->is_required;
+        return $this->isRequired;
     }
 }

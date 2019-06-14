@@ -19,6 +19,12 @@ use SeamsCMS\Delivery\Model\ContentType;
 use SeamsCMS\Delivery\Model\ContentTypeCollection;
 use SeamsCMS\Delivery\Model\WorkspaceCollection;
 
+/**
+ * Class Client
+ * @package SeamsCMS\Delivery
+ *
+ * @SuppressWarnings("Coupling")
+ */
 class Client
 {
     /** @var string */
@@ -99,7 +105,7 @@ class Client
     }
 
     /**
-     * @param string $type
+     * @param string $entryId
      *
      * @return Content
      */

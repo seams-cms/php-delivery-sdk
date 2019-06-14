@@ -95,61 +95,74 @@ class Model
     private function verify(array $model, array $data, string $currentPath = "")
     {
         foreach ($model as $id => $field) {
-            if (! isset($field['type'])) {
-                $field['type'] = self::TYPE_STRING;
-            }
+            $this->verifyField($id, $field, $data, $currentPath);
+        }
+    }
 
-            if (! isset($data[$id])) {
-                throw new \LogicException("Data is not found: $currentPath.$id");
-            }
+    /**
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @param string $id
+     * @param array $field
+     * @param array $data
+     * @param string $currentPath
+     */
+    private function verifyField(string $id, array $field, array $data, string $currentPath)
+    {
+        if (! isset($field['type'])) {
+            $field['type'] = self::TYPE_STRING;
+        }
+
+        if (! isset($data[$id])) {
+            throw new \LogicException("Data is not found: $currentPath.$id");
+        }
 
 
-            // Check if type and data[id] match up
-            $valid = false;
-            switch ($field['type']) {
-                case self::TYPE_ARRAY:
-                    $valid = is_array($data[$id]);
-                    break;
-                case self::TYPE_COLLECTION:
-                    $valid = is_array($data[$id]);
-                    break;
-                case self::TYPE_BOOLEAN:
-                    $valid = is_bool($data[$id]);
-                    break;
-                case self::TYPE_INTEGER:
-                    $valid = is_int($data[$id]);
-                    break;
-                case self::TYPE_STRING:
-                    $valid = is_string($data[$id]);
-                    break;
-                case self::TYPE_CONTENT:
+        // Check if type and data[id] match up
+        $valid = false;
+        switch ($field['type']) {
+            case self::TYPE_ARRAY:
+                $valid = is_array($data[$id]);
+                break;
+            case self::TYPE_COLLECTION:
+                $valid = is_array($data[$id]);
+                break;
+            case self::TYPE_BOOLEAN:
+                $valid = is_bool($data[$id]);
+                break;
+            case self::TYPE_INTEGER:
+                $valid = is_int($data[$id]);
+                break;
+            case self::TYPE_STRING:
+                $valid = is_string($data[$id]);
+                break;
+            case self::TYPE_CONTENT:
+                $valid = true;
+                break;
+            case self::TYPE_DATETIME:
+                try {
+                    new \DateTime($data[$id]);
                     $valid = true;
-                    break;
-                case self::TYPE_DATETIME:
-                    try {
-                        new \DateTime($data[$id]);
-                        $valid = true;
-                    } catch (\Exception $e) {
-                        $valid = false;
-                    }
-                    break;
-            }
-
-            if (! $valid) {
-                throw new \LogicException("Data is not valid according to model: $currentPath.$id");
-            }
-
-            // Check collections recursively
-            if ($field['type'] === self::TYPE_COLLECTION) {
-                foreach ($data[$id] as $entry) {
-                    $this->verify($field['model'] ?? [], $entry, $currentPath . "." . $id);
+                } catch (\Exception $e) {
+                    $valid = false;
                 }
-            }
+                break;
+        }
 
-            // Check arrays recursively
-            if ($field['type'] === self::TYPE_ARRAY) {
-                $this->verify($field['model'] ?? [], $data[$id], $currentPath . "." . $id);
+        if (! $valid) {
+            throw new \LogicException("Data is not valid according to model: $currentPath.$id");
+        }
+
+        // Check collections recursively
+        if ($field['type'] === self::TYPE_COLLECTION) {
+            foreach ($data[$id] as $entry) {
+                $this->verify($field['model'] ?? [], $entry, $currentPath . "." . $id);
             }
+        }
+
+        // Check arrays recursively
+        if ($field['type'] === self::TYPE_ARRAY) {
+            $this->verify($field['model'] ?? [], $data[$id], $currentPath . "." . $id);
         }
     }
 }
