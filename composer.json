@@ -30,7 +30,7 @@
         "phpstan/phpstan": "^0.9",
         "sebastian/phpcpd": "^3.0",
         "phpmd/phpmd": "^2.6",
-        "nette/utils": "^3.0"
+        "nette/utils": ">=2.5"
     },
     "scripts": {
         "tests": [
