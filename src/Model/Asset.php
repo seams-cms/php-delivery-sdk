@@ -1,26 +1,77 @@
 <?php
-
 declare(strict_types=1);
 
 namespace SeamsCMS\Delivery\Model;
 
 class Asset
 {
+    use HydratorTrait {
+        fromArray as private fromArrayTrait;
+    }
+
     /** @var string */
-    protected $workspace;
+    private $link;
+    /** @var string|null */
+    private $thumbnailLink;
+    /** @var int */
+    private $size;
     /** @var string */
-    protected $path;
+    private $path;
+    /** @var string */
+    private $title;
+    /** @var string */
+    private $mimetype;
+    /** @var string */
+    private $workspace;
+    /** @var AssetMeta */
+    private $meta;
 
     /**
-     * Asset constructor.
-     *
-     * @param string $workspace
-     * @param string $path
+     * @return string
      */
-    public function __construct(string $workspace, string $path)
+    public function getLink(): string
     {
-        $this->workspace = $workspace;
-        $this->path = $path;
+        return $this->link;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getThumbnailLink()
+    {
+        return $this->thumbnailLink;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSize(): int
+    {
+        return $this->size;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPath(): string
+    {
+        return $this->path;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMimetype(): string
+    {
+        return $this->mimetype;
     }
 
     /**
@@ -32,10 +83,19 @@ class Asset
     }
 
     /**
-     * @return string
+     * @return AssetMeta
      */
-    public function getPath(): string
+    public function getMeta(): AssetMeta
     {
-        return $this->path;
+        return $this->meta;
+    }
+
+    public static function fromArray(array $data)
+    {
+        $meta = AssetMeta::fromArray($data['meta']);
+        $data = $data['asset'];
+        $data['meta'] = $meta;
+
+        return self::fromArrayTrait($data);
     }
 }
