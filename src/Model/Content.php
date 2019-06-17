@@ -96,6 +96,7 @@ class Content
 
     /**
      * @param mixed $item
+     * @return array|mixed
      */
     public static function convert($item)
     {
@@ -104,16 +105,12 @@ class Content
             return $item;
         }
 
-//        // If we found a meta-key, we are an entry
-//        if (isset($item['value'])) {
-//            $item['value'] = static::convert($item['value']);
-//
-//            return $item;
-//        }
-
         // Are we an (indexed) list?
         foreach ($item as $listIndex => $listItem) {
-            $item[$listIndex] = static::fromArray($listItem);
+            // Do we have meta and content? Then we assume we are (recursive) content
+            if (isset($listItem['meta']) && isset($listItem['content'])) {
+                $item[$listIndex] = static::fromArray($listItem);
+            }
         }
 
         return $item;
