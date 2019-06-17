@@ -19,6 +19,9 @@ namespace SeamsCMS\Delivery\Model;
  */
 class ContentCollection extends Collection
 {
+    /** @var Content[] */
+    protected $entries;
+
     /**
      * @return Content[]
      */
