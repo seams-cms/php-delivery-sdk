@@ -32,7 +32,7 @@ class AssetCollection extends Collection
 
     /**
      * @param array $data
-     * @return Collection
+     * @return AssetCollection|Collection
      */
     public static function fromArray(array $data)
     {
