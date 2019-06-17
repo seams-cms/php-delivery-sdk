@@ -1,8 +1,22 @@
 <?php
+
 declare(strict_types=1);
+
+/*
+ * This file is part of the SeamsCMSDeliveryBundle package.
+ *
+ * (c) Seams-CMS.com
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace SeamsCMS\Delivery\Model;
 
+/**
+ * Class Asset
+ * @package SeamsCMS\Delivery\Model
+ */
 class Asset
 {
     use HydratorTrait {
@@ -90,6 +104,10 @@ class Asset
         return $this->meta;
     }
 
+    /**
+     * @param array $data
+     * @return Asset
+     */
     public static function fromArray(array $data)
     {
         $meta = AssetMeta::fromArray($data['meta']);
