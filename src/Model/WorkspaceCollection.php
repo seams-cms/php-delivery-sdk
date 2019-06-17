@@ -18,12 +18,13 @@ class WorkspaceCollection extends Collection
 
     public static function fromArray(array $data)
     {
-        $data['entries'] = array_map(
-            function ($item) {
-                return WorkspaceCollectionEntry::fromArray($item);
-            },
-            $data['entries']
-        );
+//        var_dump($data);
+//        $data['entries'] = array_map(
+//            function ($item) {
+//                return WorkspaceCollectionEntry::fromArray($item);
+//            },
+//            $data['entries']
+//        );
 
         return parent::fromArray($data);
     }
