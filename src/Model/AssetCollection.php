@@ -6,6 +6,21 @@ namespace SeamsCMS\Delivery\Model;
 
 class AssetCollection extends Collection
 {
+    /** @var Asset[] */
+    protected $entries;
+
+    /**
+     * @return Asset[]
+     */
+    public function getEntries(): array
+    {
+        return $this->entries;
+    }
+
+    /**
+     * @param array $data
+     * @return Collection
+     */
     public static function fromArray(array $data)
     {
         $data['entries'] = array_map(
