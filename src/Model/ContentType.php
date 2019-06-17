@@ -2,8 +2,21 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the SeamsCMSDeliveryBundle package.
+ *
+ * (c) Seams-CMS.com
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace SeamsCMS\Delivery\Model;
 
+/**
+ * Class ContentType
+ * @package SeamsCMS\Delivery\Model
+ */
 class ContentType
 {
     use HydratorTrait {
@@ -51,6 +64,10 @@ class ContentType
         return $this->fields;
     }
 
+    /**
+     * @param array $data
+     * @return ContentType
+     */
     public static function fromArray(array $data)
     {
         $data['fields'] = array_map(function ($item) {

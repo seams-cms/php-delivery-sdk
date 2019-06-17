@@ -2,8 +2,21 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the SeamsCMSDeliveryBundle package.
+ *
+ * (c) Seams-CMS.com
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace SeamsCMS\Delivery\Model;
 
+/**
+ * Class Content
+ * @package SeamsCMS\Delivery\Model
+ */
 class Content
 {
     use HydratorTrait {
@@ -64,25 +77,43 @@ class Content
      * @param array $data
      * @return Content
      */
-    public static function fromArray(array $data)
+    public static function fromArray($data)
     {
         $data['meta'] = ContentMeta::fromArray($data['meta']);
 
         foreach ($data['content'] as $key => $item) {
-            if (is_array($item['value'])) {
-                if (isset($item['value']['meta'])) {
-                    $data['content'][$key]['value'] = Content::fromArray($item['value']);
-                } else {
-                    $data['content'][$key]['value'] = array_map(
-                        function ($value) {
-                            return Content::fromArray($value);
-                        },
-                        $item['value']
-                    );
-                }
+            $item['value'] = static::convert($item['value']);
+
+            foreach ($item['locales'] as $localizedKey => $localizedItem) {
+                $item['locales'][$localizedKey] = static::convert($localizedItem);
             }
         }
 
         return self::fromArrayTrait($data);
+    }
+
+    /**
+     * @param $item
+     */
+    public static function convert($item)
+    {
+        // Scalar string doesn't need to be converted
+        if (!is_array($item)) {
+            return $item;
+        }
+
+        // If we found a meta-key, we are an entry
+        if (isset($item['value'])) {
+            $item['value'] = static::convert($item['value']);
+
+            return $item;
+        }
+
+        // Are we an (indexed) list?
+        foreach ($item as $listIndex => $listItem) {
+            $item[$listIndex] = static::fromArray($listItem);
+        }
+
+        return $item;
     }
 }

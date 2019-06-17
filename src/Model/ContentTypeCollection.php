@@ -2,8 +2,21 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the SeamsCMSDeliveryBundle package.
+ *
+ * (c) Seams-CMS.com
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace SeamsCMS\Delivery\Model;
 
+/**
+ * Class ContentTypeCollection
+ * @package SeamsCMS\Delivery\Model
+ */
 class ContentTypeCollection extends Collection
 {
     /** @var ContentTypeCollectionEntry[] */
@@ -17,6 +30,10 @@ class ContentTypeCollection extends Collection
         return $this->entries;
     }
 
+    /**
+     * @param array $data
+     * @return Collection
+     */
     public static function fromArray(array $data)
     {
         $data['entries'] = array_map(
