@@ -32,6 +32,15 @@ class AssetMeta
     /** @var string */
     private $updatedBy;
 
+
+    /**
+     * AssetMeta constructor.
+     *
+     */
+    protected function __construct()
+    {
+    }
+
     /**
      * @return \DateTimeImmutable
      */

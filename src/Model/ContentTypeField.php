@@ -32,6 +32,15 @@ class ContentTypeField
     /** @var bool */
     private $isRequired;
 
+
+    /**
+     * ContentTypeField constructor.
+     *
+     */
+    protected function __construct()
+    {
+    }
+
     /**
      * @return string
      */

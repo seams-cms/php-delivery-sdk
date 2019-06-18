@@ -32,6 +32,15 @@ class ContentType
     /** @var ContentTypeField[] */
     private $fields;
 
+
+    /**
+     * ContentType constructor.
+     *
+     */
+    protected function __construct()
+    {
+    }
+
     /**
      * @return string
      */

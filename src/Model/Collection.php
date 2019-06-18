@@ -29,6 +29,15 @@ abstract class Collection
     /** @var CollectionMeta */
     protected $meta;
 
+
+    /**
+     * Collection constructor.
+     *
+     */
+    protected function __construct()
+    {
+    }
+
     /**
      * @return array
      */

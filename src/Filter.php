@@ -39,7 +39,7 @@ class Filter
     /**
      * @param int $offset
      */
-    public function setOffset(int $offset): void
+    public function setOffset(int $offset)
     {
         $this->offset = $offset;
     }
@@ -55,7 +55,7 @@ class Filter
     /**
      * @param int $limit
      */
-    public function setLimit(int $limit): void
+    public function setLimit(int $limit)
     {
         $this->limit = $limit;
     }
@@ -71,7 +71,7 @@ class Filter
     /**
      * @param string $sort
      */
-    public function setSort(string $sort): void
+    public function setSort(string $sort)
     {
         $this->sort = $sort;
     }

@@ -33,9 +33,17 @@ class WorkspaceCollectionEntry
     protected $isArchived;
     /** @var string */
     protected $organisation;
-
     /** @var Locale[] */
     protected $locales;
+
+
+    /**
+     * WorkspaceCollectionEntry constructor.
+     *
+     */
+    protected function __construct()
+    {
+    }
 
     /**
      * @return string
