@@ -32,7 +32,7 @@ class WorkspaceCollection extends Collection
 
     /**
      * @param array $data
-     * @return WorkspaceCollection|Collection
+     * @return WorkspaceCollection
      */
     public static function fromArray(array $data)
     {

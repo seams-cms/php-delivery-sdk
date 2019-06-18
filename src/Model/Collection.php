@@ -56,7 +56,7 @@ abstract class Collection
 
     /**
      * @param array $data
-     * @return Collection
+     * @return mixed
      */
     public static function fromArray(array $data)
     {
