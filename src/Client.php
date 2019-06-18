@@ -148,7 +148,7 @@ class Client
 
             $response = $e->getResponse();
             if (is_null($response)) {
-                throw new BaseException('Guzzle exception', $e->getCode(), $e);
+                throw new BaseException('Guzzle exception', $e->getCode(), $e); // @codeCoverageIgnore
             }
 
             if ($e->getCode() == 429) {
