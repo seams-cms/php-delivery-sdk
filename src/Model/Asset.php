@@ -41,6 +41,13 @@ class Asset
     private $meta;
 
     /**
+     * Asset constructor.
+     *
+     */
+    protected function __construct() {
+    }
+
+    /**
      * @return string
      */
     public function getLink(): string
@@ -110,6 +117,10 @@ class Asset
      */
     public static function fromArray(array $data)
     {
+        if (! isset($data['meta']) || ! isset($data['asset'])) {
+            throw new \InvalidArgumentException("Need both 'meta' and 'asset'");
+        }
+
         $meta = AssetMeta::fromArray($data['meta']);
         $data = $data['asset'];
         $data['meta'] = $meta;
