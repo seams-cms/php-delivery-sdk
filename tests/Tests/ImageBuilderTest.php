@@ -33,4 +33,40 @@ class ImageBuilderTest extends TestCase
         ;
         $this->assertEquals('https://assets-nocdn.seams-cms.com/p/blur/blur/colorize(255,0,0,100)/gray/height(500)/negate/rotate(35)/workspace/image.jpg', $src);
     }
+
+    public function testSkipCDN()
+    {
+        $asset = Asset::fromArray(['asset' => ['workspace' => 'workspace', 'path' => 'image.jpg'], 'meta' => []]);
+
+        $src = ImageBuilder::fromAsset($asset)
+            ->skipCdn()
+            ->useCdn()
+            ->skipCdn()
+            ->getSourceUrl()
+        ;
+        $this->assertEquals('https://assets-nocdn.seams-cms.com/workspace/image.jpg', $src);
+    }
+
+    public function testFilters()
+    {
+        $asset = Asset::fromArray(['asset' => ['workspace' => 'workspace', 'path' => 'image.jpg'], 'meta' => []]);
+
+        $src = ImageBuilder::fromAsset($asset)
+            ->skipCdn()
+            ->useCdn()
+            ->blur()
+            ->colorize(1, 2, 3, 4)
+            ->crop(ImageBuilder::CROP_BOTTOM, 100, 100)
+            ->cropsides()
+            ->flip(ImageBuilder::FLIP_BOTH)
+            ->gray()
+            ->height(100)
+            ->negate()
+            ->rotate(90)
+            ->width(100)
+            ->getSourceUrl()
+        ;
+
+        $this->assertEquals('https://assets.seams-cms.com/p/blur/colorize(1,2,3,4)/crop(bottom,100,100)/cropsides/flip(both)/gray/height(100)/negate/rotate(90)/width(100)/workspace/image.jpg', $src);
+    }
 }
