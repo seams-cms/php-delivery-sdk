@@ -103,11 +103,16 @@ class Client
     /**
      * @param string $type
      *
+     * @param Filter|null $filter
      * @return ContentCollection
      */
-    public function getContentCollection(string $type): ContentCollection
+    public function getContentCollection(string $type, Filter $filter = null): ContentCollection
     {
-        $json = $this->makeApiRequest('get', sprintf('/workspace/%s/type/%s/entries', $this->workspace, $type));
+        $queryString = ParseFilter::generateQueryString($filter);
+
+        $json = $this->makeApiRequest('get',
+            sprintf('/workspace/%s/type/%s/entries?%s', $this->workspace, $type, $queryString)
+        );
 
         $data = json_decode($json, true);
         return ContentCollection::fromArray($data);
