@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the SeamsCMSDeliveryBundle package.
+ * This file is part of the -SeamsCMSDeliverySdk package.
  *
  * (c) Seams-CMS.com
  *
