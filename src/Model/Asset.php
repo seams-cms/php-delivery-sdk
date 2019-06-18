@@ -40,11 +40,13 @@ class Asset
     /** @var AssetMeta */
     private $meta;
 
+
     /**
      * Asset constructor.
      *
      */
-    protected function __construct() {
+    protected function __construct()
+    {
     }
 
     /**

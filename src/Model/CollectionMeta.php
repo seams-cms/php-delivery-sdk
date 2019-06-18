@@ -28,6 +28,15 @@ class CollectionMeta
     /** @var int */
     private $total;
 
+
+    /**
+     * CollectionMeta constructor.
+     *
+     */
+    protected function __construct()
+    {
+    }
+
     /**
      * @return int
      */

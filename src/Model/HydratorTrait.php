@@ -25,7 +25,7 @@ trait HydratorTrait
 
     /**
      * @param array $data
-     * @return HydratorTrait
+     * @return mixed
      */
     public static function fromArray(array $data)
     {

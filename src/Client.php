@@ -110,7 +110,8 @@ class Client
     {
         $queryString = ParseFilter::generateQueryString($filter);
 
-        $json = $this->makeApiRequest('get',
+        $json = $this->makeApiRequest(
+            'get',
             sprintf('/workspace/%s/type/%s/entries?%s', $this->workspace, $type, $queryString)
         );
 

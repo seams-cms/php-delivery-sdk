@@ -38,6 +38,15 @@ class ContentMeta
     /** @var string */
     private $updatedBy;
 
+
+    /**
+     * ContentMeta constructor.
+     *
+     */
+    protected function __construct()
+    {
+    }
+
     /**
      * @return string
      */

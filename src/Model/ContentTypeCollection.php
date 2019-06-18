@@ -32,7 +32,7 @@ class ContentTypeCollection extends Collection
 
     /**
      * @param array $data
-     * @return Collection
+     * @return ContentTypeCollection
      */
     public static function fromArray(array $data)
     {

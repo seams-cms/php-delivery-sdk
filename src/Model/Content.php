@@ -26,6 +26,15 @@ class Content
     /** @var array */
     private $content;
 
+
+    /**
+     * Content constructor.
+     *
+     */
+    protected function __construct()
+    {
+    }
+
     /**
      * @param string $field
      * @param string|null $locale

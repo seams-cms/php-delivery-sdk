@@ -26,6 +26,15 @@ class Locale
     /** @var string */
     protected $locale;
 
+
+    /**
+     * Locale constructor.
+     *
+     */
+    protected function __construct()
+    {
+    }
+
     /**
      * @return string
      */
