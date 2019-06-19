@@ -31,9 +31,21 @@ class ParseFilterTest extends TestCase
         $filter->setOffset(123);
         $filter->setLimit(456);
         $filter->setSort("foo&b a r");
+        $filter->setQuery("  aa");
 
         $qs = ParseFilter::generateQueryString($filter);
-        $this->assertEquals("offset=123&limit=456&sort=foo%26b%20a%20r", $qs);
+        $this->assertEquals("offset=123&limit=456&sort=foo%26b%20a%20r&query=%20%20aa", $qs);
     }
+
+    public function testParseFilterWithNoSortAndQuery()
+    {
+        $filter = new Filter();
+        $filter->setOffset(123);
+        $filter->setLimit(456);
+
+        $qs = ParseFilter::generateQueryString($filter);
+        $this->assertEquals("offset=123&limit=456", $qs);
+    }
+
 
 }
