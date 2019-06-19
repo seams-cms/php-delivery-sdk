@@ -90,7 +90,7 @@ class Filter
     /**
      * @param string $query
      */
-    public function setQuery(string $query): void
+    public function setQuery(string $query)
     {
         $this->query = $query;
     }
