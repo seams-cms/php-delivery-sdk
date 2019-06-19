@@ -43,8 +43,11 @@ class ImageBuilder
     /** @var array */
     protected $filters = array();
 
-    /** @var Asset */
-    protected $asset;
+
+    /** @var string */
+    protected $workspace;
+    /** @var string */
+    protected $path;
 
     /** @var bool */
     protected $cdn = false;
@@ -55,17 +58,29 @@ class ImageBuilder
      */
     public static function fromAsset(Asset $asset)
     {
-        return new self($asset);
+        return new self($asset->getWorkspace(), $asset->getPath());
+    }
+
+    /**
+     * @param string $workspace
+     * @param string $path
+     * @return ImageBuilder
+     */
+    public static function fromPath(string $workspace, string $path)
+    {
+        return new self($workspace, $path);
     }
 
     /**
      * ImageBuilder constructor.
      *
-     * @param Asset $asset
+     * @param string $workspace
+     * @param string $path
      */
-    protected function __construct(Asset $asset)
+    protected function __construct(string $workspace, string $path)
     {
-        $this->asset = $asset;
+        $this->workspace = $workspace;
+        $this->path = $path;
 
         $this->cdn = true;
     }
@@ -214,7 +229,7 @@ class ImageBuilder
      */
     public function getSourceUrl(): string
     {
-        $url = sprintf("%s/%s", $this->asset->getWorkspace(), $this->asset->getPath());
+        $url = sprintf("%s/%s", $this->workspace, $this->path);
 
         // Add filters if any are found
         if (count($this->filters) > 0) {

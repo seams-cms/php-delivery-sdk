@@ -28,6 +28,9 @@ class Filter
     /** @var string */
     protected $sort = "";
 
+    /** @var string */
+    protected $query = "";
+
     /**
      * @return int
      */
@@ -74,5 +77,21 @@ class Filter
     public function setSort(string $sort)
     {
         $this->sort = $sort;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuery(): string
+    {
+        return $this->query;
+    }
+
+    /**
+     * @param string $query
+     */
+    public function setQuery(string $query)
+    {
+        $this->query = $query;
     }
 }

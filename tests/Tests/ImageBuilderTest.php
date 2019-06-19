@@ -14,6 +14,10 @@ class ImageBuilderTest extends TestCase
 
         $src = ImageBuilder::fromAsset($asset)->getSourceUrl();
         $this->assertEquals('https://assets.seams-cms.com/workspace/image.jpg', $src);
+
+
+        $src = ImageBuilder::fromPath('foo', 'bar')->getSourceUrl();
+        $this->assertEquals('https://assets.seams-cms.com/foo/bar', $src);
     }
 
     public function testComplexImage()

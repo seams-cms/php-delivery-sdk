@@ -17,6 +17,13 @@ class ClientTest extends TestCase
     /** @var \PHPUnit\Framework\MockObject\MockObject|Client */
     protected $guzzleMock;
 
+    public function testGetWorkspace()
+    {
+        $client = $this->getClient();
+
+        $this->assertEquals('foobar', $client->getWorkspace());
+    }
+
     public function testClientApiKeyFailure()
     {
         $client = $this->getClient();

@@ -133,6 +133,16 @@ class Client
     }
 
     /**
+     * Returns the current configured workspace
+     *
+     * @return string
+     */
+    public function getWorkspace(): string
+    {
+        return $this->workspace;
+    }
+
+    /**
      * @param string $method
      * @param string|Uri $url
      * @return string
@@ -148,7 +158,7 @@ class Client
 
             $response = $e->getResponse();
             if (is_null($response)) {
-                throw new BaseException('Guzzle exception', $e->getCode(), $e);
+                throw new BaseException('Guzzle exception', $e->getCode(), $e); // @codeCoverageIgnore
             }
 
             if ($e->getCode() == 429) {

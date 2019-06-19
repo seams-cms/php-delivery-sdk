@@ -34,7 +34,12 @@ class ParseFilter
         $params = [];
         $params['offset'] = $filter->getOffset();
         $params['limit'] = $filter->getLimit();
-        $params['sort'] = $filter->getSort();
+        if (! empty($filter->getSort())) {
+            $params['sort'] = $filter->getSort();
+        }
+        if (! empty($filter->getQuery())) {
+            $params['query'] = $filter->getQuery();
+        }
 
         return build_query($params);
     }

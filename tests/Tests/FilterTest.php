@@ -13,6 +13,7 @@ class FilterTest extends TestCase
         $this->assertEquals(0, $filter->getOffset());
         $this->assertEquals(100, $filter->getLimit());
         $this->assertEquals("", $filter->getSort());
+        $this->assertEquals("", $filter->getQuery());
     }
 
     public function testFilterGettersSetters()
@@ -27,5 +28,8 @@ class FilterTest extends TestCase
 
         $filter->setSort("foobar");
         $this->assertEquals("foobar", $filter->getSort());
+
+        $filter->setQuery("test");
+        $this->assertEquals("test", $filter->getQuery());
     }
 }
