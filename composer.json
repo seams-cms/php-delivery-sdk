@@ -18,7 +18,6 @@
     "require": {
         "php": "^7.0",
         "ext-json": "*",
-        "symfony/property-access": "^3.4|^4.0",
         "guzzlehttp/guzzle": "^6.3",
         "ocramius/generated-hydrator": "^2.2",
         "psr/http-message": "^1.0",
