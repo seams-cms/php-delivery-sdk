@@ -3,7 +3,7 @@
 namespace SeamsCMS\Delivery\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SeamsCMS\Delivery\Exception\InvalidFieldsException;
+use SeamsCMS\Delivery\Exception\MissingFieldsException;
 use SeamsCMS\Delivery\Model\Collection;
 use SeamsCMS\Delivery\Model\CollectionMeta;
 
@@ -15,7 +15,7 @@ class CollectionTest extends TestCase
 
     function testEmptyMetaData()
     {
-        $this->expectException(InvalidFieldsException::class);
+        $this->expectException(MissingFieldsException::class);
 
         $data = [];
         DummyCollection::fromArray($data);

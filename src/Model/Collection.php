@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace SeamsCMS\Delivery\Model;
 
-use SeamsCMS\Delivery\Exception\InvalidFieldsException;
+use SeamsCMS\Delivery\Exception\MissingFieldsException;
 
 /**
  * Class Collection
@@ -63,7 +63,7 @@ abstract class Collection
     public static function fromArray(array $data)
     {
         if (! isset($data['meta'])) {
-            throw InvalidFieldsException::metaNotFound();
+            throw MissingFieldsException::metaNotFound();
         }
 
         $data['meta'] = CollectionMeta::fromArray($data['meta']);

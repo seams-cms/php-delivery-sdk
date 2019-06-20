@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace SeamsCMS\Delivery\Model;
 
-use SeamsCMS\Delivery\Exception\InvalidFieldsException;
+use SeamsCMS\Delivery\Exception\MissingFieldsException;
 
 /**
  * Class ContentType
@@ -82,7 +82,7 @@ class ContentType
     public static function fromArray(array $data)
     {
         if (! isset($data['fields'])) {
-            throw InvalidFieldsException::fieldsNotFound();
+            throw MissingFieldsException::fieldsNotFound();
         }
 
         $data['fields'] = array_map(function ($item) {

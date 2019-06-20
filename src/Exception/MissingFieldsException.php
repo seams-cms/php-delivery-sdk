@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace SeamsCMS\Delivery\Exception;
 
-class InvalidFieldsException extends BaseException implements SeamsCMSException
+class MissingFieldsException extends BaseException implements SeamsCMSException
 {
     public static function metaNotFound()
     {
@@ -23,5 +23,10 @@ class InvalidFieldsException extends BaseException implements SeamsCMSException
     public static function fieldsNotFound()
     {
         return new self("Field 'fields' not found");
+    }
+
+    public static function metaOrAssetNotFound()
+    {
+        return new self("Fields 'meta' and/or 'asset' not found");
     }
 }

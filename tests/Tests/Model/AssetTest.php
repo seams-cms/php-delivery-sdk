@@ -3,6 +3,7 @@
 namespace SeamsCMS\Delivery\Tests;
 
 use PHPUnit\Framework\TestCase;
+use SeamsCMS\Delivery\Exception\MissingFieldsException;
 use SeamsCMS\Delivery\Model\Asset;
 
 class AssetTest extends TestCase
@@ -14,7 +15,7 @@ class AssetTest extends TestCase
      */
     function testAssetWithWrongData($data)
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(MissingFieldsException::class);
         Asset::fromArray($data);
     }
 

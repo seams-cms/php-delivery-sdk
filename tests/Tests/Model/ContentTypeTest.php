@@ -3,7 +3,7 @@
 namespace SeamsCMS\Delivery\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SeamsCMS\Delivery\Exception\InvalidFieldsException;
+use SeamsCMS\Delivery\Exception\MissingFieldsException;
 use SeamsCMS\Delivery\Model\ContentType;
 use SeamsCMS\Delivery\Model\ContentTypeField;
 
@@ -15,7 +15,7 @@ class ContentTypeTest extends TestCase
 
     function testEmpty()
     {
-        $this->expectException(InvalidFieldsException::class);
+        $this->expectException(MissingFieldsException::class);
 
         $data = [];
         DummyContentType::fromArray($data);
