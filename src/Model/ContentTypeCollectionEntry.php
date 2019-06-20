@@ -22,13 +22,13 @@ class ContentTypeCollectionEntry
     use HydratorTrait;
 
     /** @var string */
-    private $id;
+    private $id = "";
     /** @var string */
-    private $name;
+    private $name = "";
     /** @var string */
-    private $description;
+    private $description = "";
     /** @var int */
-    private $entryCount;
+    private $entryCount = 0;
 
     /**
      * @return string

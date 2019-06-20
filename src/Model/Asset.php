@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace SeamsCMS\Delivery\Model;
 
+use SeamsCMS\Delivery\Exception\MissingFieldsException;
+
 /**
  * Class Asset
  * @package SeamsCMS\Delivery\Model
@@ -120,7 +122,7 @@ class Asset
     public static function fromArray(array $data)
     {
         if (! isset($data['meta']) || ! isset($data['asset'])) {
-            throw new \InvalidArgumentException("Need both 'meta' and 'asset'");
+            throw MissingFieldsException::MetaOrAssetNotFound();
         }
 
         $meta = AssetMeta::fromArray($data['meta']);

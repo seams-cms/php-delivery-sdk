@@ -24,7 +24,10 @@ class Content
     }
 
     /** @var array */
-    private $content;
+    private $content = [];
+
+    /** @var ContentMeta */
+    private $meta;
 
 
     /**
@@ -33,6 +36,14 @@ class Content
      */
     protected function __construct()
     {
+    }
+
+    /**
+     * @return ContentMeta
+     */
+    public function getMeta(): ContentMeta
+    {
+        return $this->meta;
     }
 
     /**

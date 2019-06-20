@@ -3,6 +3,7 @@
 namespace SeamsCMS\Delivery\Tests;
 
 use PHPUnit\Framework\TestCase;
+use SeamsCMS\Delivery\Exception\MissingFieldsException;
 use SeamsCMS\Delivery\Model\Asset;
 
 class AssetTest extends TestCase
@@ -14,7 +15,7 @@ class AssetTest extends TestCase
      */
     function testAssetWithWrongData($data)
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(MissingFieldsException::class);
         Asset::fromArray($data);
     }
 
@@ -33,7 +34,9 @@ class AssetTest extends TestCase
             'meta' => array(
                 'foo' => 'bar',
                 'created_at' => '01-02-1973',
+                'created_by' => 'john doe',
                 'updated_at' => '05-06-1977',
+                'updated_by' => 'jane doe',
             ),
             'asset' => array(
                 'link' => 'the-link',
@@ -58,6 +61,9 @@ class AssetTest extends TestCase
 
         $this->assertEquals('01-02-1973', $asset->getMeta()->getCreatedAt()->format('d-m-Y'));
         $this->assertEquals('05-06-1977', $asset->getMeta()->getUpdatedAt()->format('d-m-Y'));
+        $this->assertEquals('john doe', $asset->getMeta()->getCreatedBy());
+        $this->assertEquals('jane doe', $asset->getMeta()->getUpdatedBy());
+
     }
 
 }

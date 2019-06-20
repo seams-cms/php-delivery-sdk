@@ -22,15 +22,15 @@ class ContentTypeField
     use HydratorTrait;
 
     /** @var string */
-    private $name;
+    private $name = "";
     /** @var string */
-    private $description;
+    private $description = "";
     /** @var string */
-    private $type;
+    private $type = "";
     /** @var bool */
-    private $isLocalized;
+    private $isLocalized = false;
     /** @var bool */
-    private $isRequired;
+    private $isRequired = false;
 
 
     /**

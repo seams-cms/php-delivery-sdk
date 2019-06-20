@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace SeamsCMS\Delivery\Model;
 
+use SeamsCMS\Delivery\Exception\MissingFieldsException;
+
 /**
  * Class ContentType
  * @package SeamsCMS\Delivery\Model
@@ -24,13 +26,13 @@ class ContentType
     }
 
     /** @var string */
-    private $id;
+    private $id = "";
     /** @var string */
-    private $name;
+    private $name = "";
     /** @var string */
-    private $description;
+    private $description = "";
     /** @var ContentTypeField[] */
-    private $fields;
+    private $fields = [];
 
 
     /**
@@ -79,6 +81,10 @@ class ContentType
      */
     public static function fromArray(array $data)
     {
+        if (! isset($data['fields'])) {
+            throw MissingFieldsException::fieldsNotFound();
+        }
+
         $data['fields'] = array_map(function ($item) {
             return ContentTypeField::fromArray($item);
         }, $data['fields']);

@@ -24,17 +24,17 @@ class WorkspaceCollectionEntry
     }
 
     /** @var string */
-    protected $id;
+    protected $id = "";
     /** @var string */
-    protected $name;
+    protected $name = "";
     /** @var string */
-    protected $description;
+    protected $description = "";
     /** @var bool */
-    protected $isArchived;
+    protected $isArchived = false;
     /** @var string */
-    protected $organisation;
+    protected $organisation = "";
     /** @var Locale[] */
-    protected $locales;
+    protected $locales = [];
 
 
     /**
@@ -103,7 +103,7 @@ class WorkspaceCollectionEntry
             function ($item) {
                 return Locale::fromArray($item);
             },
-            $data['locales']
+            $data['locales'] ?? []
         );
 
         return self::fromArrayTrait($data);

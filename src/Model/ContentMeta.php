@@ -24,19 +24,19 @@ class ContentMeta
     }
 
     /** @var string */
-    private $revisionId;
+    private $revisionId = "";
     /** @var string */
-    private $entryId;
+    private $entryId = "";
     /** @var string */
-    private $contentType;
+    private $contentType = "";
     /** @var \DateTimeImmutable */
     private $createdAt;
     /** @var string */
-    private $createdBy;
+    private $createdBy = "";
     /** @var \DateTimeImmutable */
     private $updatedAt;
     /** @var string */
-    private $updatedBy;
+    private $updatedBy = "";
 
 
     /**
@@ -109,6 +109,13 @@ class ContentMeta
      */
     public static function fromArray(array $data)
     {
+        if (isset($data['created_at'])) {
+            $data['created_at'] = new \DateTimeImmutable($data['created_at']);
+        }
+        if (isset($data['updated_at'])) {
+            $data['updated_at'] = new \DateTimeImmutable($data['updated_at']);
+        }
+
         return self::fromArrayTrait($data);
     }
 }

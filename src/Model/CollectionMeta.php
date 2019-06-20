@@ -22,11 +22,11 @@ class CollectionMeta
     use HydratorTrait;
 
     /** @var int */
-    private $limit;
+    private $limit = 0;
     /** @var int */
-    private $offset;
+    private $offset = 0;
     /** @var int */
-    private $total;
+    private $total = 0;
 
 
     /**

@@ -22,9 +22,9 @@ class Locale
     use HydratorTrait;
 
     /** @var string */
-    protected $name;
+    protected $name = "";
     /** @var string */
-    protected $locale;
+    protected $locale = "";
 
 
     /**
