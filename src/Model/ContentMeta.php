@@ -24,19 +24,19 @@ class ContentMeta
     }
 
     /** @var string */
-    private $revisionId;
+    private $revisionId = "";
     /** @var string */
-    private $entryId;
+    private $entryId = "";
     /** @var string */
-    private $contentType;
+    private $contentType = "";
     /** @var \DateTimeImmutable */
     private $createdAt;
     /** @var string */
-    private $createdBy;
+    private $createdBy = "";
     /** @var \DateTimeImmutable */
     private $updatedAt;
     /** @var string */
-    private $updatedBy;
+    private $updatedBy = "";
 
 
     /**

@@ -26,13 +26,13 @@ class ContentType
     }
 
     /** @var string */
-    private $id;
+    private $id = "";
     /** @var string */
-    private $name;
+    private $name = "";
     /** @var string */
-    private $description;
+    private $description = "";
     /** @var ContentTypeField[] */
-    private $fields;
+    private $fields = [];
 
 
     /**

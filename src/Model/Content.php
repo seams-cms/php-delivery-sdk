@@ -24,7 +24,7 @@ class Content
     }
 
     /** @var array */
-    private $content;
+    private $content = [];
 
 
     /**
