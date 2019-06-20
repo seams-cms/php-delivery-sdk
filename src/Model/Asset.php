@@ -122,7 +122,7 @@ class Asset
     public static function fromArray(array $data)
     {
         if (! isset($data['meta']) || ! isset($data['asset'])) {
-            throw MissingFieldsException::MetaOrAssetNotFound();
+            throw MissingFieldsException::metaOrAssetNotFound();
         }
 
         $meta = AssetMeta::fromArray($data['meta']);
