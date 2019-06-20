@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace SeamsCMS\Delivery\Model;
 
+use SeamsCMS\Delivery\Exception\InvalidFieldsException;
+
 /**
  * Class ContentType
  * @package SeamsCMS\Delivery\Model
@@ -79,6 +81,10 @@ class ContentType
      */
     public static function fromArray(array $data)
     {
+        if (! isset($data['fields'])) {
+            throw InvalidFieldsException::fieldsNotFound();
+        }
+
         $data['fields'] = array_map(function ($item) {
             return ContentTypeField::fromArray($item);
         }, $data['fields']);

@@ -3,7 +3,6 @@
 namespace SeamsCMS\Delivery\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SeamsCMS\Delivery\Model\Asset;
 use SeamsCMS\Delivery\Model\Locale;
 
 class LocaleTest extends TestCase

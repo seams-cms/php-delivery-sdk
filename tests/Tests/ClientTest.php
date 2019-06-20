@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 use SeamsCMS\Delivery\Exception\BaseException;
 use SeamsCMS\Delivery\Exception\RateLimitException;
 use SeamsCMS\Delivery\Exception\UnauthorizedException;
+use SeamsCMS\Delivery\Model\Content;
 
 class ClientTest extends TestCase
 {
@@ -190,7 +191,52 @@ class ClientTest extends TestCase
         $this->assertEquals('name', $type->getName());
     }
 
+    public function testContentCollection()
+    {
+        $client = $this->getClient();
 
+        $json = array(
+            'entries' => [],
+            'meta' => [
+                'offset' => 0,
+                'limit' => 10,
+                'count' => 0,
+            ],
+        );
+
+        $response = new Response(200, [], json_encode($json));
+        $this->guzzleMock->method('request')->willReturn($response);
+
+        $collection = $client->getContentCollection('foobar');
+
+        $this->assertCount(0, $collection->getEntries());
+    }
+
+    public function testGetEntry()
+    {
+        $client = $this->getClient();
+
+        $json = array(
+            'content' => [
+                'key' => [
+                    'value' => 'var',
+                    'locales' => [
+                        'nl_NL' => 'varNL',
+                        'en_US' => 'varEN',
+                    ],
+                ],
+            ],
+            'meta' => [
+            ],
+        );
+
+        $response = new Response(200, [], json_encode($json));
+        $this->guzzleMock->method('request')->willReturn($response);
+
+        $entry = $client->getEntry('id');
+
+        $this->assertInstanceOf(Content::class, $entry);
+    }
 
     protected function getClient()
     {
