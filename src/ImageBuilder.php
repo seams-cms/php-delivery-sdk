@@ -23,22 +23,22 @@ use SeamsCMS\Delivery\Model\Asset;
  */
 class ImageBuilder
 {
-    protected const ASSET_BASE_URL_CDN = "https://assets.seams-cms.com";
-    protected const ASSET_BASE_URL = "https://assets-nocdn.seams-cms.com";
+    const ASSET_BASE_URL_CDN = "https://assets.seams-cms.com";
+    const ASSET_BASE_URL = "https://assets-nocdn.seams-cms.com";
 
-    public const CROP_TOP_LEFT = "topleft";
-    public const CROP_TOP = "top";
-    public const CROP_TOP_RIGHT = "topright";
-    public const CROP_LEFT = "left";
-    public const CROP_CENTER = "center";
-    public const CROP_RIGHT = "right";
-    public const CROP_BOTTOM_LEFT = "bottomleft";
-    public const CROP_BOTTOM = "bottom";
-    public const CROP_BOTTOM_RIGHT = "bottomright";
+    const CROP_TOP_LEFT = "topleft";
+    const CROP_TOP = "top";
+    const CROP_TOP_RIGHT = "topright";
+    const CROP_LEFT = "left";
+    const CROP_CENTER = "center";
+    const CROP_RIGHT = "right";
+    const CROP_BOTTOM_LEFT = "bottomleft";
+    const CROP_BOTTOM = "bottom";
+    const CROP_BOTTOM_RIGHT = "bottomright";
 
-    public const FLIP_HORIZONTAL = "horizontal";
-    public const FLIP_VERTICAL = "vertical";
-    public const FLIP_BOTH = "both";
+    const FLIP_HORIZONTAL = "horizontal";
+    const FLIP_VERTICAL = "vertical";
+    const FLIP_BOTH = "both";
 
     /** @var array */
     protected $filters = array();
