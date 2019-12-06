@@ -122,6 +122,18 @@ class ImageBuilder
     }
 
     /**
+     * @param int $width
+     * @param int $height
+     * @return ImageBuilder
+     */
+    public function boxed(int $width = 100, int $height = 100): self
+    {
+        $this->filters[] = sprintf('boxed(%d,%d)', $width, $height);
+
+        return $this;
+    }
+
+    /**
      * @param int $red
      * @param int $green
      * @param int $blue
