@@ -1,8 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 /*
- * This file is part of the -SeamsCMSDeliverySdk package.
+ * This file is part of the SeamsCMSDeliverySdk package.
  *
  * (c) Seams-CMS.com
  *
