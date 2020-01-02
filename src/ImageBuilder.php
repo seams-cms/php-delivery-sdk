@@ -51,6 +51,8 @@ class ImageBuilder
 
     /** @var bool */
     protected $cdn = false;
+    /** @var bool */
+    protected $webp = false;
 
     /**
      * @param Asset $asset
@@ -83,6 +85,7 @@ class ImageBuilder
         $this->path = $path;
 
         $this->cdn = true;
+        $this->webp = false;
     }
 
     /**
@@ -107,6 +110,18 @@ class ImageBuilder
     public function useCdn(): self
     {
         $this->cdn = true;
+
+        return $this;
+    }
+
+    /**
+     * Return the image in WebP format
+     *
+     * @return self
+     */
+    public function asWebp(): self
+    {
+        $this->webp = true;
 
         return $this;
     }
@@ -241,7 +256,7 @@ class ImageBuilder
      */
     public function getSourceUrl(): string
     {
-        $url = sprintf("%s/%s", $this->workspace, $this->path);
+        $url = sprintf("%s/%s%s", $this->workspace, $this->path, $this->webp ? ".webp" : "");
 
         // Add filters if any are found
         if (count($this->filters) > 0) {
