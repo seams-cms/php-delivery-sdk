@@ -73,4 +73,13 @@ class ImageBuilderTest extends TestCase
 
         $this->assertEquals('https://assets.seams-cms.com/p/blur/colorize(1,2,3,4)/crop(bottom,100,100)/cropsides/flip(both)/gray/height(100)/negate/rotate(90)/width(100)/workspace/image.jpg', $src);
     }
+
+    public function testWebp()
+    {
+        $src = ImageBuilder::fromPath('foo', 'bar.png')->getSourceUrl();
+        $this->assertEquals('https://assets.seams-cms.com/foo/bar.png', $src);
+
+        $src = ImageBuilder::fromPath('foo', 'bar.png')->asWebp()->getSourceUrl();
+        $this->assertEquals('https://assets.seams-cms.com/foo/bar.png.webp', $src);
+    }
 }
