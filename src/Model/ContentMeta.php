@@ -116,6 +116,10 @@ class ContentMeta
             $data['updated_at'] = new \DateTimeImmutable($data['updated_at']);
         }
 
+        if (isset($data['type_id'])) {
+            $data['contentType'] = $data['type_id'];
+        }
+
         return self::fromArrayTrait($data);
     }
 }
