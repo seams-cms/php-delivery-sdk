@@ -39,7 +39,7 @@ class ContentType
      * ContentType constructor.
      *
      */
-    protected function __construct()
+    final protected function __construct()
     {
     }
 

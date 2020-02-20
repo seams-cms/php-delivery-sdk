@@ -21,6 +21,7 @@ use GeneratedHydrator\Configuration;
  */
 trait HydratorTrait
 {
+    /** @var array */
     private static $hydrators = array();
 
     /**

@@ -41,7 +41,7 @@ class WorkspaceCollectionEntry
      * WorkspaceCollectionEntry constructor.
      *
      */
-    protected function __construct()
+    final protected function __construct()
     {
     }
 

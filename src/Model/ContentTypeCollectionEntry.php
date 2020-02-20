@@ -31,6 +31,13 @@ class ContentTypeCollectionEntry
     private $entryCount = 0;
 
     /**
+     * ContentTypeCollectionEntry constructor.
+     */
+    final protected function __construct()
+    {
+    }
+
+    /**
      * @return string
      */
     public function getId()

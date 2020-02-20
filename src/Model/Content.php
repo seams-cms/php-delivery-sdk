@@ -34,7 +34,7 @@ class Content
      * Content constructor.
      *
      */
-    protected function __construct()
+    final protected function __construct()
     {
     }
 

@@ -15,17 +15,17 @@ namespace SeamsCMS\Delivery\Exception;
 
 class MissingFieldsException extends BaseException implements SeamsCMSException
 {
-    public static function metaNotFound()
+    public static function metaNotFound(): self
     {
         return new self("Field 'meta' not found");
     }
 
-    public static function fieldsNotFound()
+    public static function fieldsNotFound(): self
     {
         return new self("Field 'fields' not found");
     }
 
-    public static function metaOrAssetNotFound()
+    public static function metaOrAssetNotFound(): self
     {
         return new self("Fields 'meta' and/or 'asset' not found");
     }
