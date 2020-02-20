@@ -14,7 +14,7 @@ This repository hosts the SDK for the Seams-CMS delivery API.
 > Before installing, make sure you have an Seams-CMS account with an API key. This information is needed in the SDK.
 
 
-    $factory = new SeamsCMS\ClientFactory(<apiKey>, <workspace>);
+    $factory = new SeamsCMS\Delivery\ClientFactory(<apiKey>, <workspace>);
     $client = $factory->build();
    
     $collection = $client->getWorkspaceCollection();
