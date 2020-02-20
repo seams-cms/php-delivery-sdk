@@ -82,4 +82,16 @@ class ImageBuilderTest extends TestCase
         $src = ImageBuilder::fromPath('foo', 'bar.png')->asWebp()->getSourceUrl();
         $this->assertEquals('https://assets.seams-cms.com/foo/bar.png.webp', $src);
     }
+
+    public function testBoxed()
+    {
+        $asset = Asset::fromArray(['asset' => ['workspace' => 'workspace', 'path' => 'image.jpg'], 'meta' => []]);
+
+        $src = ImageBuilder::fromAsset($asset)
+            ->skipCdn()
+            ->boxed(320, 200)
+            ->getSourceUrl()
+        ;
+        $this->assertEquals('https://assets-nocdn.seams-cms.com/p/boxed(320,200)/workspace/image.jpg', $src);
+    }
 }
