@@ -41,6 +41,7 @@ class Filter
 
     /**
      * @param int $offset
+     * @return void
      */
     public function setOffset(int $offset)
     {
@@ -57,6 +58,7 @@ class Filter
 
     /**
      * @param int $limit
+     * @return void
      */
     public function setLimit(int $limit)
     {
@@ -73,6 +75,7 @@ class Filter
 
     /**
      * @param string $sort
+     * @return void
      */
     public function setSort(string $sort)
     {
@@ -89,6 +92,7 @@ class Filter
 
     /**
      * @param string $query
+     * @return void
      */
     public function setQuery(string $query)
     {

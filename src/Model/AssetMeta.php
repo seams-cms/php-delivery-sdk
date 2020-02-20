@@ -37,7 +37,7 @@ class AssetMeta
      * AssetMeta constructor.
      *
      */
-    protected function __construct()
+    final protected function __construct()
     {
     }
 

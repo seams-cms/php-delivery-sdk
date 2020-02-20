@@ -33,7 +33,7 @@ class CollectionMeta
      * CollectionMeta constructor.
      *
      */
-    protected function __construct()
+    final protected function __construct()
     {
     }
 
